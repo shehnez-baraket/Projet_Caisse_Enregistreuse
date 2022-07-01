@@ -1,0 +1,241 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: Gainsboro;
+
+			color: black;
+			font-family: Arial;
+			font-size: 16px;
+			background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREEbYuQrC5HN98LIUXFzzo47HY_AW9h-ddCw&usqp=CAU");
+			background-repeat: no-repeat, repeat;
+			background-size: cover;
+			position: relative;
+			padding-bottom: 60px;
+		}
+		.wrapper {
+			margin: 80px auto;
+			text-align: center;
+			width: 100%;
+			position: relative;
+		}
+		.btn {
+			padding: 15px 100px;
+			margin: 10px 4px;
+			color: Black;
+			font-family: sans-serif;
+			text-transform: uppercase;
+			text-align: center;
+			position: relative;
+			text-decoration: none;
+			display: inline-block;
+			border: 1px solid;
+		}
+		.btn::before,
+		.ConnectezVous::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			-webkit-transform: scaleY(0.1);
+			transform: scaleY(0.1);
+			transition: all 0.4s;
+			text-decoration: none;
+			color: black;
+		}
+		.btn:hover,
+		.ConnectezVous:hover {
+			color: Black;
+		}
+		.btn:hover::before,
+		.ConnectezVous::before {
+			opacity: 1;
+			background-color: Gainsboro;
+			-webkit-transform: scaleY(1);
+			transform: scaleY(1);
+			transition: -webkit-transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity 0.4s;
+			transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity
+		}
+		h3 {
+			text-align: center;
+			margin-left: 80%;
+			font-weight: bold;
+		}
+		.card {
+			position: absolute;
+			bottom: 0;
+			height: 25%;
+			width: 100%;
+			text-align: center;
+			position: fixed;
+			background-color: black;
+			color: white;
+		}
+		.navbar-dark {
+			background-color: black;
+		}
+		a {
+			color: white;
+		}
+		.ConnectezVous {
+			float: right;
+			text-decoration: none;
+			margin-top: 30px;
+			margin-right: 20px;
+			text-align: center;
+			color: MidnightBlue;
+		}
+		.ConnectezVous:hover {
+			opacity: 1;
+			background-color: LightSteelBlue;
+			-webkit-transform: scaleY(1);
+			transform: scaleY(1);
+			transition: -webkit-transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity 0.4s;
+			transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity
+		}
+		#deconnexion {
+			margin-left: 1225px;
+
+		}
+		.clients,
+		.Fournisseurs,
+		.Gestionstock,
+		.Utilisateurs,
+		.Dépenses,
+		.Caisse {
+			text-decoration: none;
+			color: black;
+		}
+		p {
+			color: white;
+			font-size: 25px;
+		}
+
+		#date {
+			float: right;
+		}
+		.navbar-dark {
+			background-color: LightSteelBlue;
+
+		}
+		h3 {
+
+			color: Navy;
+			font-family: 'Courier New', monospace;
+		}
+		.text-center {
+			padding-top: 60px;
+		}
+		h2 {
+			font-family: 'Trattatello', 'fantasy';
+			color: PowderBlue;
+			margin-left: 26em;
+			font-weight: bold;
+		}
+		.titre2 {
+			font-family: 'Snell Roundhand', cursive;
+			color: white;
+			margin-left: 39em;
+			font-size: 22px;
+		}
+		h4 {
+			font-family: 'Trattatello', 'fantasy';
+			color: DeepSkyBlue;
+			margin-left: 35em;
+			font-weight: bold;
+		}
+		.imgGerant {
+			width: 200px;
+			height: 150px;
+			float: right;
+			margin-right: 10em;
+		}
+	</style>
+	<nav class="navbar navbar-dark">
+		<a class="navbar-brand" href="https://www.solutec.com.tn/">
+			<h3>SOLUTEC SOLUTION D'ENCAISSEMENT</h3>
+
+		</a>
+		<!--si l'utilisateur est connecté on affiche deconnexion sinon on affiche connexion-->
+		{% if app.user %}
+			<a href='{{path('app_logout')}}' class="ConnectezVous" id="deconnexion">
+				Déconnexion
+			</a>
+
+		{% else %}
+			<a href='{{path('app_login')}}' class="ConnectezVous">
+				Connexion
+			</a>
+
+		{% endif %}
+
+	</nav>
+	<div class="wrapper">
+		{% if is_granted('ROLE_SUPER_ADMIN') %}
+			<h3 class="titre2">
+				Bienvenue monsieur le Serveur
+			</h3>
+			<br><br><h3 class="titre2">
+				Vous pouvez commencer à
+				<a href="{{ path('Caisse')}}" class="clients">Composer les commandes</a>
+				ou consulter les
+				<a href="{{ path('admin') }}" class="clients">Clients</a>
+				<!--<a href="{{ path('client_index') }}" class="clients">Clients</a>!-->
+
+			</h3>
+
+		{% elseif is_granted('ROLE_ADMIN') %}
+			<h3 class="titre2">
+				Bienvenue monsieur le Gérant
+			</h3>
+			<img class="imgGerant" src="https://media1.giphy.com/media/1ipiIut5Xh6DaviTSJ/giphy.gif" alt="Bienvenue monsieur le Gérant  Image"/>
+			<br><br><br><br><br><br><br><h3 class="titre2">
+				Vous pouvez consulter votre
+				<a href="{{ path('admin') }}" class="clients">Dashboard</a>
+				ou la
+				<a href="{{ path('Caisse')}}" class="Caisse">Caisse</a>
+			</h3>
+
+
+		{% elseif  is_granted('ROLE_USER') %}
+			<h3 class="titre2">
+				Bienvenue monsieur le Caissier
+			</h3>
+			<br><br><h3 class="titre2">
+				Vous pouvez gérer votre
+				<a href="{{ path('Caisse')}}" class="Caisse">Caisse</a>
+
+			</h3>
+		{% else %}
+
+			<h2>
+				<strong>
+					Veuillez vous connecter pour bénéficier de notre systéme de	gestion de restaurant
+				</strong>
+			</h2>
+			<h3 class="titre2">
+				Merci d'avoir choisi SOLUTEC
+			</h3>
+			<h4>
+				Votre accompagnant pour toujours
+			</h4>
+		{% endif %}
+
+	</div>
+	<div class="fixed-bottom">
+
+		<div color="Navy" class="text-center p-3" style="background-color: LightSteelBlue;">
+			© 2021 Copyright:
+			<a class="text-dark" href="https://fr-fr.facebook.com/SOLUTEC.COM.TN/">SOLUTEC
+			</a>
+		</div>
+	</div>
+{% endblock %}

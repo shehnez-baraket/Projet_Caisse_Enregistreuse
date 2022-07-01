@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background-color: Gainsboro;
+		}
+		h1 {
+			margin-top: 20px;
+			margin-bottom: -40px;
+			font-variant: small-caps;
+		}
+		img {
+			height: 2.5em;
+			width: 10em;
+			margin-right: 0;
+			margin-left: 80%;
+		}
+	</style>
+	<h1 align="center">Modifier le produit</h1>
+
+	{{ include('stock/_form.html.twig', {'button_label': 'edit'}) }}
+
+
+{% endblock %}

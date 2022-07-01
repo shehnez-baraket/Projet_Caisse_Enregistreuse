@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block body %}
+	<style>
+		fieldset {
+			border: 3px solid SteelBlue;
+			-moz-border-radius: 8px;
+			-webkit-border-radius: 8px;
+			border-radius: 8px;
+		}
+		label {
+			margin-bottom: 10px;
+		}
+		body {
+			background-color: Gainsboro;
+		}
+		.form {
+			margin-left: 30%;
+			margin-right: 30%;
+			margin-top: 10%;
+			text-align: center;
+
+		}
+		.btn-lg {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			background-color: SteelBlue;
+		}
+		legend {
+			background-color: SteelBlue;
+			color: #fff;
+			padding: 3px 6px;
+		}
+	</style>
+	<form method="post" class="form">
+		<fieldset>
+			<legend>Please sign in
+			</legend>
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+
+			{% if app.user %}
+				<div class="mb-3">
+					You are logged in as
+					{{ app.user.username }},
+					<a href="{{ path('app_logout') }}">Logout</a>
+				</div>
+			{% endif %}
+			<label for="inputUsername">Username</label>
+			<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+			<label for="inputPassword">Password</label>
+			<input type="password" name="password" id="inputPassword" class="form-control" required>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<button class="btn btn-lg btn-primary" type="submit">
+				Sign in
+			</button>
+
+			<br>
+			<a href="{{ path('app_forgotten_password') }}">Mot de passe oublié?</a>
+		</fieldset>
+	</form>
+{% endblock %}

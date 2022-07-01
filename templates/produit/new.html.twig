@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Produit
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: Gainsboro;
+		}
+		#btnRetour {
+			margin-left: 265px;
+			margin-top: -140px;
+		}
+		h1 {
+			margin-top: 20px;
+			margin-bottom: -40px;
+			font-variant: small-caps;
+		}
+	</style>
+	<h1 align="center">Créer un nouveau produit</h1>
+
+	{{ include('produit/_form.html.twig') }}
+	<a href="{{ path('produit_index') }}">
+		<button type="button" class="btn btn-dark" id="btnRetour">Retour</button>
+	</a>
+
+
+{% endblock %}

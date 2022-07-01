@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock
+{% endblock %}
+
+{% block body %}
+	<style>
+
+		body {
+			background: Gainsboro;
+		}
+		#btnRetour {
+			margin-left: 652px;
+			margin-top: -160px;
+		}
+		h1 {
+			margin-top: 20px;
+			margin-bottom: -40px;
+			font-variant: small-caps;
+		}
+	</style>
+	<h1 align="center">Ajouter un nouveau produit</h1>
+
+	{{ include('stock/_form.html.twig') }}
+
+	<a href="{{ path('stock_index') }}">
+		<button type="button" class="btn btn-dark" id="btnRetour">Retour</button>
+	</a>
+{% endblock %}

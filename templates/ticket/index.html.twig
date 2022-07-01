@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: #808080;
+		}
+		.table-dark {
+			text-align: center;
+			width: 80%;
+			margin-left: 10%;
+		}
+		tr:hover {
+			color: grey;
+		}
+		a {
+			text-decoration: none;
+			color: white;
+
+		}
+		a:hover {
+
+			color: skyblue;
+
+		}
+		.CreateNew {
+			margin-left: 600px;
+			color: black;
+			font-family: Trebuchet;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		h1 {
+			margin-bottom: 50px;
+		}
+	</style>
+	<h1 align="center">
+		Liste des Tickets
+	</h1>
+
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Qte</th>
+				<th>Designation</th>
+				<th>Total</th>
+				<th>Remise</th>
+				<th>Famille</th>
+				<th>Marque</th>
+				<th>Tva</th>
+				<th>Codeart</th>
+				<th>Date</th>
+				<th>TotalTicket</th>
+				<th>Recu</th>
+				<th>Rendu</th>
+				<th>Caissier</th>
+				<th>Client</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ticket in tickets %}
+				<tr>
+					<td>{{ ticket.id }}</td>
+					<td>{{ ticket.qte }}</td>
+					<td>{{ ticket.designation }}</td>
+					<td>{{ ticket.total }}</td>
+					<td>{{ ticket.remise }}</td>
+					<td>{{ ticket.famille }}</td>
+					<td>{{ ticket.marque }}</td>
+					<td>{{ ticket.tva }}</td>
+					<td>{{ ticket.codeart }}</td>
+					<td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
+					<td>{{ ticket.totalTicket }}</td>
+					<td>{{ ticket.recu }}</td>
+					<td>{{ ticket.rendu }}</td>
+					<td>{{ ticket.caissier }}</td>
+					<td>{{ ticket.client }}</td>
+					<td>
+						<a href="{{ path('ticket_show', {'id': ticket.id}) }}">show</a>
+						<a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="16">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{ path('ticket_new') }}" class="CreateNew">
+		<button type="button" class="btn btn-dark">Créer un nouveau ticket</button>
+	</a>
+{% endblock %}

@@ -1,0 +1,853 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Caisse
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		body {
+			background: Gainsboro;
+		}
+		.partiegauche {
+			overflow-y: auto;
+			overflow-x: auto;
+			position: fixed;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			width: 25em;
+			height: 30em;
+			margin-top: -2.5em;
+			background: white;
+		}
+		.btn-group-vertical {
+			position: fixed;
+			left: 0;
+			top: 10%;
+			width: 9em;
+			height: 80%;
+			margin-top: -2.5em;
+		}
+		#TotalLabel {
+			color: black;
+		}
+		#depense {
+			width: 10em;
+			margin-top: -4em;
+			margin-left: 10em;
+		}
+		.btndepenses:hover {
+			box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+		}
+		#btndepenses {
+			top: 35em;
+			left: 0;
+			position: fixed;
+			bottom: 2em;
+			background-color: PeachPuff;
+			border-radius: 10px;
+			height: 4em;
+			width: 9.25em;
+
+		}
+		#ChoixTable {
+			position: fixed;
+			right: 0;
+			top: 28em;
+			bottom: 25em;
+			margin-left: 0;
+
+		}
+		#total {
+			font-size: 24px;
+			color: red;
+		}
+
+		.btn-secondary {
+
+			border-style: inset;
+		}
+		.Enregistrement {
+			margin-top: 40px;
+			height: 100%;
+			overflow-y: auto;
+			overflow-x: auto;
+		}
+		#produitEntrees,
+		#produitPlats,
+		#produitDesserts,
+		#produitBoissons,
+		#produitGarnitures,
+		#produitFormules,
+		#produitSauces {
+			margin-left: 12em;
+			margin-right: 32em;
+			display: none;
+			margin-top: 2px;
+		}
+		#Dépenses {
+			display: none;
+		}
+
+		.btngrp {
+			position: fixed;
+			right: -5em;
+
+			bottom: 130px;
+			width: 30em;
+		}
+		.form-outline {
+			position: fixed;
+			right: 17em;
+			bottom: 40px;
+			width: 8em;
+			color: black;
+		}
+		p {
+			margin-bottom: 2px;
+			color: white;
+		}
+		.TabTotal {
+			position: fixed;
+			right: 0;
+			top: 70%;
+			width: 30em;
+		}
+		#input-group {
+			position: fixed;
+			right: 150px;
+			bottom: 80px;
+			width: 8em;
+			display: none;
+		}
+		.Paiement {
+			bottom: 15em;
+			position: fixed;
+			width: 45em;
+			height: 13em;
+			left: 12em;
+			border-style: ridge;
+			color: black;
+		}
+		#txt {
+			color: black;
+		}
+		#ChoixModePaiement {
+			bottom: 24em;
+			position: fixed;
+			width: 8em;
+			left: 45em;
+			color: black;
+		}
+		#btnImprimer {
+			bottom: 20em;
+			position: fixed;
+			width: 8em;
+			left: 45em;
+		}
+
+		label {
+			color: white;
+		}
+		span {
+			color: white;
+			font-size: 20px;
+		}
+		#ARENDRESPAN {
+			margin-left: 10em;
+		}
+		#EnregistrerBoutton1 {
+			margin-top: -3.5em;
+			margin-left: 22em;
+		}
+		.EnregistrerBoutton1:hover {
+			color: black;
+		}
+		.Dépenses {
+			bottom: 6em;
+			position: fixed;
+			width: 45em;
+			height: 8em;
+			left: 12em;
+			border-style: ridge;
+		}
+	</style>
+
+	<script>
+		function AfficheDepense() {
+var dept = document.getElementById("Dépenses");
+if (dept.style.display === "none") {
+dept.style.display = "block";
+} else {
+dept.style.display = "none";
+}
+}
+function AfficheRemise() {
+var x = document.getElementById("input-group");
+if (x.style.display === "none") {
+x.style.display = "block";
+} else {
+x.style.display = "none";
+}
+}
+function myFunctionENTREES() {
+
+var x = document.getElementById("produitEntrees");
+var y = document.getElementById("produitPlats");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (x.style.display === "none") {
+x.style.display = "block";
+y.style.display = "none";
+z.style.display = "none";
+a.style.display = "none";
+g.style.display = "none";
+s.style.display = "none";
+f.style.display = "none";
+} else {
+x.style.display = "none";
+}
+}
+function myFunctionPLATS() {
+var x = document.getElementById("produitPlats");
+var y = document.getElementById("produitEntrees");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (x.style.display === "none") {
+x.style.display = "block";
+y.style.display = "none";
+z.style.display = "none";
+a.style.display = "none";
+g.style.display = "none";
+s.style.display = "none";
+f.style.display = "none";
+} else {
+x.style.display = "none";
+}
+}
+
+function myFunctionDESSERTS() {
+var x = document.getElementById("produitPlats");
+var y = document.getElementById("produitEntrees");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (z.style.display === "none") {
+z.style.display = "block";
+y.style.display = "none";
+x.style.display = "none";
+g.style.display = "none";
+s.style.display = "none";
+f.style.display = "none";
+a.style.display = "none";
+} else {
+z.style.display = "none";
+}
+}
+function myFunctionBOISSONS() {
+var x = document.getElementById("produitPlats");
+var y = document.getElementById("produitEntrees");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (a.style.display === "none") {
+a.style.display = "block";
+y.style.display = "none";
+x.style.display = "none";
+z.style.display = "none";
+g.style.display = "none";
+s.style.display = "none";
+f.style.display = "none";
+} else {
+a.style.display = "none";
+}
+}
+function myFunctionFORMULES() {
+var x = document.getElementById("produitPlats");
+var y = document.getElementById("produitEntrees");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (f.style.display === "none") {
+a.style.display = "none";
+y.style.display = "none";
+x.style.display = "none";
+z.style.display = "none";
+g.style.display = "none";
+s.style.display = "none";
+f.style.display = "block";
+} else {
+f.style.display = "none";
+}
+}
+function myFunctionSAUCES() {
+var x = document.getElementById("produitPlats");
+var y = document.getElementById("produitEntrees");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (s.style.display === "none") {
+a.style.display = "none";
+y.style.display = "none";
+x.style.display = "none";
+z.style.display = "none";
+g.style.display = "none";
+s.style.display = "block";
+f.style.display = "none";
+} else {
+s.style.display = "none";
+}
+}
+function myFunctionGARNITURES() {
+var x = document.getElementById("produitPlats");
+var y = document.getElementById("produitEntrees");
+var z = document.getElementById("produitDesserts");
+var a = document.getElementById("produitBoissons");
+var g = document.getElementById("produitGarnitures");
+var s = document.getElementById("produitSauces");
+var f = document.getElementById("produitFormules");
+if (g.style.display === "none") {
+a.style.display = "none";
+y.style.display = "none";
+x.style.display = "none";
+z.style.display = "none";
+g.style.display = "block";
+s.style.display = "none";
+f.style.display = "none";
+} else {
+g.style.display = "none";
+}
+}
+// la fonction qui nous permet d'ajoutre des produits à la liste d'achat
+function addRow(produit, qte, Prix) {
+var table = document.getElementById('caisse');
+
+var newRow = table.insertRow(table.rows.length);
+
+var cel1 = newRow.insertCell(0);
+var cel2 = newRow.insertCell(1);
+var cel3 = newRow.insertCell(2);
+
+cel1.innerHTML = produit;
+cel2.innerHTML = qte;
+cel3.innerHTML = Prix;
+}
+
+
+function Calculer() { // contient les lignes de tableau
+var arrayLignes = document.getElementById('caisse').rows;
+var lengthArray = document.getElementById('caisse').rows.length - 1;
+
+var somme = 0;
+QteT = 0;
+var R = 0.0;
+var i = 2;
+var recu = document.getElementById('reglement').value;
+for (i = 2; i <= lengthArray; i++) {
+var Prix = parseFloat(document.getElementById("caisse").rows[i].cells[2].innerHTML);
+somme = somme + Prix;
+Qte = parseInt(document.getElementById("caisse").rows[i].cells[1].innerHTML);
+QteT = QteT + Qte;
+var R = parseFloat(document.getElementById('Remise').value);
+if (R > 0.0) {
+document.getElementById('APAYER').innerHTML = somme - R;
+document.getElementById('total').innerHTML = somme - R;
+document.getElementById('ARENDRE').innerHTML = recu - somme + R;
+} else {
+document.getElementById('APAYER').innerHTML = somme
+document.getElementById('total').innerHTML = somme
+document.getElementById('ARENDRE').innerHTML = recu - somme;
+}
+
+document.getElementById('QteTotal').innerHTML = QteT;
+document.getElementById('PrixTotal').innerHTML = somme;
+}
+
+}
+function CalculerServeur() {
+var somme = 0;
+QteT = 0;
+var arrayLignes = document.getElementById('caisse').rows;
+var lengthArray = document.getElementById('caisse').rows.length - 1;
+for (i = 2; i <= lengthArray; i ++) {
+var Prix = parseFloat(document.getElementById("caisse").rows[i].cells[2].innerHTML);
+somme = somme + Prix;
+Qte = parseInt(document.getElementById("caisse").rows[i].cells[1].innerHTML);
+QteT = QteT + Qte;
+}
+document.getElementById('QteTotal').innerHTML = QteT;
+document.getElementById('PrixTotal').innerHTML = somme;
+document.getElementById('total').innerHTML = somme
+}
+
+
+function imprimer_bloc(titre, objet) { // Définition de la zone à imprimer
+var zone = document.getElementById(objet).innerHTML;
+// Ouverture du popup
+var fen = window.open("", "", "height=500, width=600,toolbar=0, menubar=0, scrollbars=1, resizable=1,status=0, location=0, left=10, top=10");
+
+// style du popup
+fen.document.body.style.color = '#000000';
+fen.document.body.style.backgroundColor = '#FFFFFF';
+fen.document.body.style.padding = "20px";
+
+// Ajout des données a imprimer
+fen.document.title = titre;
+fen.document.body.innerHTML += " " + zone + " ";
+
+// Impression du popup
+fen.window.print();
+
+// Fermeture du popup
+fen.window.close();
+return true;
+}
+	</script>
+
+	<div class="btn-group-vertical">
+		<button onclick="myFunctionENTREES()" type="button" class="btn btn-primary btn-lg col-3">
+			ENTREE🥘
+		</button>
+
+		<button onclick="myFunctionPLATS()" type="button" class="btn btn-secondary btn-lg col-1">
+			PLAT 🥣
+		</button>
+
+		<button onclick="myFunctionDESSERTS()" type="button" class="btn btn-success btn-lg col-1">
+			DESSERT🍧
+		</button>
+
+		<button onclick="myFunctionBOISSONS()" type="button" class="btn btn-danger btn-lg col-1">
+			BOISSON☕
+		</button>
+
+		<button onclick="myFunctionFORMULES()" type="button" class="btn btn-warning btn-lg col-1">
+			FORMULE🍽
+		</button>
+		<button onclick="myFunctionSAUCES()" type="button" class="btn btn-info btn-lg col-1">
+			SAUCE🧉
+		</button>
+
+		<button onclick="myFunctionGARNITURES()" type="button" class="btn btn-light btn-lg col-1">
+			GARNITURE🥡
+		</button>
+	</div>
+	<!-- Le choix de la table correspondante à la commande !-->
+	<div id="ChoixTable">
+		<div class="dropdown show">
+			<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Choisir une table:
+
+				<FORM>
+					<select name="nom" size="1">
+						<option selected>Comptoir
+						</option>
+						<option>Table 1</option>
+						<OPTION>Table 2</option>
+						<option>Table 3</option>
+						<option>Table 4</option>
+						<option>Table 5</option>
+						<option>Table 6</option>
+						<option>Table 7</option>
+						<option>Table 8</option>
+						<option>Table 9</option>
+						<option>Table 10</option>
+					</select>
+				</FORM>
+			</button>
+		</div>
+	</div>
+
+	<div id="produitEntrees">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('OMELETTE ESPAGNOLE', '1', '5.5')" type="button" class="btn btn-secondary ">
+							OMELETTE ESPAGNOLE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('CROQUETTES DE FROMAGE', '1', '5.25')" type="button" class="btn btn-secondary">
+							CROQUETTES DE FROMAGE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('SOUPE AUX OIGNONS', '1', '4.8')" type="button" class="btn btn-secondary">
+							SOUPE AUX OIGNONS
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('TOMATE MOZZARELLA', '1', '5')" type="button" class="btn btn-secondary">
+							TOMATE MOZZARELLA
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button onclick="addRow('TOMATE FARCIES', '1', '14')" type="button" class="btn btn-secondary">
+							TOMATE FARCIES
+
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('BROCHETTE DE GAMBAS', '1', '8.5')" type="button" class="btn btn-secondary">
+							BROCHETTE DE GAMBAS
+						</td>
+					</td>
+					<td>
+						<button onclick="addRow('LOEMPIA', '1', '4')" type="button" class="btn btn-secondary">
+							LOEMPIA
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="produitPlats">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('LASAGNE BOLOGNAISE', '1', '12')" type="button" class="btn btn-secondary col-20">
+							LASAGNE BOLOGNAISE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('MOULES FRITE', '1', '18')" type="button" class="btn btn-secondary col-20">
+							MOULES FRITE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('BOULETTES SAUCE TOMATE', '1', '18')" type="button" class="btn btn-secondary col-20">
+							BOULETTES SAUCE TOMATE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('CHOUCROUTE', '1', '7')" type="button" class="btn btn-secondary col-20">
+							CHOUCROUTE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('CORDON BLEU', '1', '9')" type="button" class="btn btn-secondary col-20">
+							CORDON BLEU
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button onclick="addRow('STEAK FRITES', '1', '18')" type="button" class="btn btn-secondary col-20">
+							STEAK FRITES
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="produitDesserts">
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('TIRAMISU', '1', '5')" type="button" class="btn btn-secondary col-20">
+							TIRAMISU
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('CREPE MAISON', '1', '5')" type="button" class="btn btn-secondary col-20">
+							CREPE MAISON
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('MOELLEUX CHOCOLAT', '1', '5')" type="button" class="btn btn-secondary col-20">
+							MOELLEUX CHOCOLAT
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('BAVAROIS', '1', '5')" type="button" class="btn btn-secondary col-20">
+							BAVAROIS
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button onclick="addRow('SALADE DE FRUITS', '1', '5')" type="button" class="btn btn-secondary col-20">
+							SALADE DE FRUITS
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('FLAN MAISON', '1', '4')" type="button" class="btn btn-secondary col-20">
+							FLAN MAISON
+						</td>
+					</td>
+					<td>
+						<button onclick="addRow('GLACE AU CHOIX', '1', '2')" type="button" class="btn btn-secondary col-">
+							GLACE AU CHOIX
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="produitBoissons">
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('COLA', '1', '2.5')" type="button" class="btn btn-secondary col-20">
+							COLA
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('CAFE', '1', '2.5')" type="button" class="btn btn-secondary col-20">
+							CAFE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('EAU PLATE', '1', '2.5')" type="button" class="btn btn-secondary col-20">
+							EAU PLATE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('EAU PETILLANTE', '1', '2.5')" type="button" class="btn btn-secondary col-20">
+							EAU PETILLANTE
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button onclick="addRow('CAPPUCINO', '1', '2.5')" type="button" class="btn btn-secondary col-20">
+							CAPPUCINO
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('OASIS', '1', '2.5')" type="button" class="btn btn-secondary col-20">
+							OASIS
+						</td>
+					</td>
+					<td>
+						<button onclick="addRow('JUS DORANGE', '1', '3')" type="button" class="btn btn-secondary col-">
+							JUS D'ORANGE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('THE MENTHE', '1', '3')" type="button" class="btn btn-secondary col-">
+							THE MENTHE
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="produitFormules">
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('LUNCH MIDI', '1', '10.5')" type="button" class="btn btn-secondary col-20">
+							LUNCH MIDI
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="produitSauces">
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('BEARNAISE', '1', '1')" type="button" class="btn btn-secondary col-20">
+							BEARNAISE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('BECHAMELLE', '1', '1')" type="button" class="btn btn-secondary col-20">
+							BECHAMELLE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('CURRY', '1', '1')" type="button" class="btn btn-secondary col-20">
+							CURRY
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('MAYONNAISE', '1', '1')" type="button" class="btn btn-secondary col-20">
+							MAYONNAISE
+						</button>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+	<div id="produitGarnitures">
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>
+						<button onclick="addRow('FRITES', '1', '2')" type="button" class="btn btn-secondary col-20">
+							FRITES
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('PUREE', '1', '2')" type="button" class="btn btn-secondary col-20">
+							PUREE
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('RIZ', '1', '3.5')" type="button" class="btn btn-secondary col-20">
+							RIZ
+						</button>
+					</td>
+					<td>
+						<button onclick="addRow('RIZ ASSAISONNE', '1', '4')" type="button" class="btn btn-secondary col-20">
+							RIZ ASSAISONNE
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button onclick="addRow('PAIN', '1', '1')" type="button" class="btn btn-secondary col-20">
+							PAIN
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')%}
+		<button onclick="AfficheDepense()" type="button" class="btndepenses" id="btndepenses">
+			Dépenses
+		</button>
+
+		<!-- Paiement -->
+		<div class="Paiement" id="PaiementAffiche">
+			<span>
+				<label id="txt">Réglement:</label>
+				<input id='reglement' class="form-control" type="text" placeholder="00000">
+			</span>
+			<span>
+				<label id="txt">A payer :</label>
+				<span id="APAYER">0000</span>
+			</span>
+			<span id="ARENDRESPAN">
+				<label id="txt">A rendre :</label>
+				<span id="ARENDRE">0000</span>
+			</span>
+			<div id="ChoixModePaiement">
+				<FORM>
+					<SELECT name="nom" size="1">
+						<option selected>CASH</option>
+						<OPTION>CARTE BANCAIRE</option>
+						<option>CHEQUE</option>
+
+					</select>
+				</FORM>
+			</div>
+
+			<button onclick="imprimer_bloc('ticket de caisse','partiegauche')" type=" button" class=" btn btn-outline-warning" id="btnImprimer">
+				IMPRIMER
+			</button>
+
+		</div>
+		<!-- Dépenses -->
+		<div id="ChoixNomDepense">
+			<div class="Dépenses" id="Dépenses">
+				<div class="dropdown show">
+					<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Choisir la dépense:
+						<FORM>
+							<select name="nom" size="1">
+								<option selected>Transport</option>
+								<OPTION>Réparation</option>
+								<option>Facture</option>
+								<option>Essence</option>
+								<option>Autre</option>
+							</select>
+						</FORM>
+					</button><input id='depense' class="form-control" type="text" placeholder="0">
+					<button type="button" class="btn btn-outline-success" id="EnregistrerBoutton1">Enregistrer
+					</button>
+				</div>
+
+			</div>
+		</div>
+	{% endif %}
+	<!-- Caisse-->
+	<div class="partiegauche" id="partiegauche">
+		<div class=" enregistrement">
+			<h3>Vente directe</h3>
+			<table class="table" id="caisse">
+				<thead>
+					<tr>
+						<th scope="col">Article</th>
+						<th scope="col">Qté</th>
+						<th id="prix" scope="col">Prix</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th scope="col">TOTAL :
+					</th>
+					<th id="QteTotal" scope="col">0</th>
+					<th id="PrixTotal" scope="col">0</th>
+
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+
+	<!--Les opérations sur les enregistrements-->
+	<div class="btngrp">
+		{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')%}
+			<button onclick="Calculer()" type="button" class="btn btn-secondary col-3">
+				Valider
+			</button>
+		{% else %}
+			<button onclick="CalculerServeur()" type="button" class="btn btn-secondary col-3">
+				Valider
+			</button>
+		{% endif %}
+		<button onclick="AfficheRemise()" type="button" class="btn btn-secondary col-3">
+			Remise
+			<div id="input-group">
+				<input type="text" id="Remise" class="form-control" aria-label="Amount (to the nearest dollar)">
+			</div>
+		</button>
+	</div>
+	<div class="form-outline">
+		<p id='TotalLabel'>TOTAL A PAYER :</p>
+		<p id="total">
+			0.0</p>
+	</div>
+
+{% endblock %}

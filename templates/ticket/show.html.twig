@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: #808080;
+		}
+		.table-dark {
+			width: 60%;
+			text-align: center;
+			margin-left: 20%;
+			background-color: DimGray;
+			border: 2em;
+		}
+		h1 {
+			margin-bottom: 30px;
+		}
+		a {
+			text-decoration: none;
+			color: white;
+			font-size: 20px;
+		}
+		.btn-dark {
+			margin-left: 50%;
+		}
+	</style>
+	<h1 align="center">
+		Ticket</h1>
+
+	<table class="table table-dark">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ ticket.id }}</td>
+			</tr>
+			<tr>
+				<th>Qte</th>
+				<td>{{ ticket.qte }}</td>
+			</tr>
+			<tr>
+				<th>Designation</th>
+				<td>{{ ticket.designation }}</td>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<td>{{ ticket.total }}</td>
+			</tr>
+			<tr>
+				<th>Remise</th>
+				<td>{{ ticket.remise }}</td>
+			</tr>
+			<tr>
+				<th>Famille</th>
+				<td>{{ ticket.famille }}</td>
+			</tr>
+			<tr>
+				<th>Marque</th>
+				<td>{{ ticket.marque }}</td>
+			</tr>
+			<tr>
+				<th>Tva</th>
+				<td>{{ ticket.tva }}</td>
+			</tr>
+			<tr>
+				<th>Codeart</th>
+				<td>{{ ticket.codeart }}</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>TotalTicket</th>
+				<td>{{ ticket.totalTicket }}</td>
+			</tr>
+			<tr>
+				<th>Recu</th>
+				<td>{{ ticket.recu }}</td>
+			</tr>
+			<tr>
+				<th>Rendu</th>
+				<td>{{ ticket.rendu }}</td>
+			</tr>
+			<tr>
+				<th>Caissier</th>
+				<td>{{ ticket.caissier }}</td>
+			</tr>
+			<tr>
+				<th>Client</th>
+				<td>{{ ticket.client }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+<style>
+
+	.container {
+		padding: 80px;
+		margin-left: 300px;
+	}
+	.form-group {
+		margin-bottom: 5px;
+	}
+	.form-control {
+		width: 70%;
+		align: center;
+	}
+</style>
+<div class="container">
+	{{ form_start(form) }}
+	<div class="form-group">{{form_row(form.qte,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.designation,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.total,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.remise,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.famille,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.marque,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.tva,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.codeart,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.date,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.totalTicket,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.recu,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.rendu,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.caissier,{'attr':{'class':'form-control'}})}}</div>
+	<div class="form-group">{{form_row(form.client,{'attr':{'class':'form-control'}})}}</div>
+	<button class="btn" class="btn btn-dark">{{ button_label|default('Save') }}</button>
+	{{ form_end(form) }}</div>

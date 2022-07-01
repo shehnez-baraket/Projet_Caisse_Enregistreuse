@@ -1,0 +1,32 @@
+<style>
+
+	.container {
+		padding: 80px;
+
+	}
+	.form-group {
+		margin-top: -5px;
+		width: 40em;
+	}
+	.form-control {
+		width: 70%;
+
+	}
+	.btn-success {
+		margin-left: 12em;
+
+	}
+</style>
+<div style="width: 600px; ; padding-top:10px; padding-bottom:10px;border: 3px solid #A0A0A0;background: #C0C0C0; margin-left:24em;">
+
+	<div class="container">
+		{{ form_start(form) }}
+		<div class="form-group">{{form_row(form.nom,{'attr':{'class':'form-control'}})}}</div>
+		<div class="form-group">{{form_row(form.prenom,{'attr':{'class':'form-control'}})}}</div>
+		<div class="form-group">{{form_row(form.designation,{'attr':{'class':'form-control'}})}}</div>
+		<div class="form-group">{{form_row(form.tel,{'attr':{'class':'form-control'}})}}</div>
+		<div class="form-group">{{form_row(form.email,{'attr':{'class':'form-control'}})}}</div>
+		<button class="btn btn-success">{{ button_label|default('Save') }}</button>
+		{{ form_end(form) }}
+	</div>
+</div>

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des clients
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background-color: Gainsboro;
+		}
+		fieldset {
+			border: 3px solid black;
+			-moz-border-radius: 8px;
+			-webkit-border-radius: 8px;
+			border-radius: 8px;
+		}
+
+		.container {
+			padding: 80px;
+			margin-left: 100px;
+		}
+		.form-group {
+			margin-bottom: 5px;
+		}
+		.form-control {
+			width: 70%;
+			align: center;
+		}
+		h1 {
+			margin-top: 20px;
+			margin-bottom: 60px;
+			font-variant: small-caps;
+		}
+		form {
+			width: 30em;
+		}
+		.btn-success {
+			margin-left: 7em;
+		}
+		label {
+			font-variant: small-caps;
+
+		}
+	</style>
+
+
+	<h1 align="center">Ajouter un utilisateur</h1>
+	<div style="width: 600px; ; padding-top:10px; padding-bottom:10px;border: 3px solid #A0A0A0;background: #C0C0C0; margin-left:24em;">
+
+		<div class="container">
+			{{ form_start(registrationForm) }}
+			<div class="form-group">{{form_row(registrationForm.username,{'label':'Username : '},{'attr':{'class':'form-control'}})}}</div>
+			<div class="form-group">{{form_row(registrationForm.plainPassword,{'label':'Password : '},{'attr':{'class':'form-control'}})}}</div>
+			<div class="form-group">{{form_row(registrationForm.roles,{'label':'Role : '},{'attr':{'class':'form-control'}})}}</div>
+
+
+			<button class="btn btn-success">Register</button>
+			{{ form_end(registrationForm) }}
+
+
+		</div>
+	{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ticket
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: #808080;
+		}
+		#btnRetour {
+			margin-left: 1000px;
+			margin-top: -200px;
+		}
+		h1 {
+			margin-left: 50px;
+		}
+	</style>
+	<h1 align="center">Créer un nouveau Ticket</h1>
+
+	{{ include('ticket/_form.html.twig') }}
+
+	<a href="{{ path('ticket_index') }}">back to list</a>
+{% endblock %}

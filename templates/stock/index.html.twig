@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: Gainsboro;
+		}
+		.table-dark {
+			text-align: center;
+			width: 80%;
+			margin-left: 10%;
+		}
+		tr:hover {
+			color: grey;
+		}
+		a {
+			text-decoration: none;
+			color: white;
+
+		}
+		a:hover {
+
+			color: skyblue;
+
+		}
+		.CreateNew {
+			margin-left: 600px;
+			color: black;
+			font-family: Trebuchet;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		h1 {
+			margin-top: 20px;
+			margin-bottom: 60px;
+			font-variant: small-caps;
+		}
+	</style>
+	<h1 align="center">Etat du stock</h1>
+
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Produit</th>
+				<th>MaxQte</th>
+				<th>MinQte</th>
+				<th>Dispo</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stock in stocks %}
+				<tr>
+					<td>{{ stock.id }}</td>
+					<td>{{ stock.produit }}</td>
+					<td>{{ stock.maxQte }}</td>
+					<td>{{ stock.minQte }}</td>
+					<td>{{ stock.Dispo }}</td>
+					<td>
+						<a href="{{ path('stock_show', {'id': stock.id}) }}">
+							<button type="button" class="btn btn-warning">show
+							</button>
+						</a>
+						<a href="{{ path('stock_edit', {'id': stock.id}) }}">
+							<button type="button" class="btn btn-success">edit
+							</button>
+						</a>
+						{{ include('stock/_delete_form.html.twig') }}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('stock_new') }}" class="CreateNew">
+		<button type="button" class="btn btn-primary">Créer un nouveau produit</button>
+	</a>
+{% endblock %}

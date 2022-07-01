@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des fournisseurs
+{% endblock %}
+
+{% block body %}
+<style>
+	body {
+		background: Gainsboro;
+	}
+	.table-dark {
+		text-align: center;
+		margin-left: 10%;
+		width: 80%;
+
+	}
+	tr:hover {
+		color: grey;
+	}
+	a {
+		text-decoration: none;
+		color: white;
+
+	}
+	a:hover {
+
+		color: skyblue;
+
+	}
+	.CreateNew {
+		margin-left: 600px;
+		color: black;
+		font-family: Trebuchet;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	h1 {
+		margin-top: 20px;
+		margin-bottom: 60px;
+		font-variant: small-caps;
+	}
+	.btn-primary {
+
+		margin-left: 600px;
+		color: black;
+		font-family: Trebuchet;
+		font-size: 15px;
+		font-weight: bold;
+	}
+</style>
+<h1 align="center">Liste des Fournisseurs
+</h1>
+
+<table class="table table-dark">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for fournisseur in fournisseurs %}
+			<tr>
+				<td>{{ fournisseur.id }}</td>
+				<td>{{ fournisseur.nom }}</td>
+				<td>{{ fournisseur.prenom }}</td>
+
+				<td>
+					<a href="{{ path('fournisseur_show', {'id': fournisseur.id}) }}">
+						<button type="button" class="btn btn-warning">show
+						</button>
+					</a>
+					<a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">
+						<button type="button" class="btn btn-success">edit
+						</button>
+					</a>
+					{{ include('fournisseur/_delete_form.html.twig', {'button_label': 'delete'} ) }}
+				</td>
+
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="7">no records found</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<button type="button" class="btn btn-primary">
+	<a href="{{ path('fournisseur_new') }}">Créer un nouveau fournisseur</a>
+</button {% endblock %}

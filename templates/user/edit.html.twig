@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: Gainsboro;
+		}
+		.container {
+			padding: 80px;
+
+		}
+		.form-group {
+			margin-top: -5px;
+			width: 40em;
+		}
+		.form-control {
+			width: 70%;
+
+		}
+		.form-group1 {
+			padding-left: 7em;
+			color: Navy;
+
+		}
+		.btn-success {
+			margin-left: 12em;
+
+		}
+	</style>
+	<h1 align="center">Edit Utilisateur</h1>
+
+
+	{{ include('user/_form.html.twig', {'button_label': 'Edit'}) }}
+
+
+{% endblock %}

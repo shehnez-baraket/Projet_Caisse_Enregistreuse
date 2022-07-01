@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: #808080;
+		}
+		#btnRetour {
+			margin-left: 1000px;
+			margin-top: -200px;
+		}
+		h1 {
+			margin-left: 50px;
+		}
+		.container {
+			padding: 80px;
+
+		}
+		.form-group {
+			margin-top: -5px;
+			width: 40em;
+		}
+		.form-control {
+			width: 70%;
+
+		}
+		.form-group1 {
+			padding-left: 7em;
+			color: Navy;
+
+		}
+		.btn-success {
+			margin-left: 12em;
+
+		}
+	</style>
+	<h1 align="center">Ajouter un nouvel utilisateur</h1>
+
+
+	{{ include('user/_form.html.twig') }}
+
+	<a href="{{ path('user_index') }}">
+		<button type="button" class="btn btn-dark" id="btnRetour">Retour</button>
+	</a>
+{% endblock %}

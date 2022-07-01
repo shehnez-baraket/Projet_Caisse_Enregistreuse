@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background: Gainsboro;
+		}
+		h1 {
+			margin-top: 20px;
+			margin-bottom: -40px;
+			font-variant: small-caps;
+		}
+	</style>
+	<h1 align="center">Modifier le produit</h1>
+
+	{{ include('produit/_form.html.twig', {'button_label': 'Edit'}) }}
+
+{% endblock %}
